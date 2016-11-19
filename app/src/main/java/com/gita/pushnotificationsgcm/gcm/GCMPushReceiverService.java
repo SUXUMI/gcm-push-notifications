@@ -27,13 +27,19 @@ public class GCMPushReceiverService extends GcmListenerService {
 
     private void sendNotification(String message,String title) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+
         builder.setSmallIcon(R.mipmap.ic_launcher);
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("message", message);
         intent.putExtra("title", title);
         intent.putExtra("fromPush", true);
+
+
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentIntent(pendingIntent);
+
+
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
         builder.setContentTitle(title);
         builder.setContentText(message);

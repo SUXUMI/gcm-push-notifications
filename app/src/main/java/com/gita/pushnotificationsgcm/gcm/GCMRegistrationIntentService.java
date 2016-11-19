@@ -42,7 +42,7 @@ public class GCMRegistrationIntentService extends IntentService {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    App.instance.getBus().post(new TokenAvailableEvent(token));
+                    App.instance.getBus().post(token);
                 }
             });
 

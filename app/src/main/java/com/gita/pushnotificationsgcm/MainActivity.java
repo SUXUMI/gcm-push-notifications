@@ -2,11 +2,12 @@ package com.gita.pushnotificationsgcm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.BaseMenuPresenter;
 import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActvity {
 
     private TextView tokenTV;
 
@@ -26,20 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        App.instance.getBus().register(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        App.instance.getBus().unregister(this);
-    }
 
     @Subscribe
-    public void onTokenAvailable(TokenAvailableEvent event) {
-        tokenTV.setText("Token = " + event.getToken());
+    public void onTokenAvailable(String token) {
+        tokenTV.setText("Token = " + token);
     }
 }
